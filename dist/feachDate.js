@@ -6,6 +6,8 @@ export default async function fetchData(url) {
         const json = await response.json();
         return json;
     }
-    catch (error) { }
+    catch (error) {
+        return null;
+    }
 }
 //# sourceMappingURL=feachDate.js.map
