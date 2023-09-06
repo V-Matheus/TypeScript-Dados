@@ -1,9 +1,10 @@
 import moeadaParaNumero from "./moedaParaNumero.js";
+import stringToDate from "./stringToDate.js";
 export default function normalizarTransacao(transcao) {
     return {
         nome: transcao.Nome,
         id: transcao.ID,
-        data: transcao.Data,
+        data: stringToDate(transcao.Data),
         status: transcao.Status,
         email: transcao.Email,
         moeada: transcao["Valor (R$)"],

@@ -6,6 +6,9 @@ async function handleData() {
         return;
     const transacoes = data.map(normalizarTransacao);
     console.log(transacoes);
+    transacoes.forEach(item => {
+        item.data.getHours();
+    });
 }
 handleData();
 //# sourceMappingURL=script.js.map
