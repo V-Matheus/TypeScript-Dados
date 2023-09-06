@@ -1,3 +1,5 @@
+import moeadaParaNumero from "./moedaParaNumero.js";
+
 declare global {
   type TransacaoPagamento = "Boleto" | "Cartão de Crédito";
   type TransacaoStatus =
@@ -38,7 +40,7 @@ export default function normalizarTransacao(transcao: TransacaoAPI) {
     status: transcao.Status,
     email: transcao.Email,
     moeada: transcao["Valor (R$)"],
-    valor: 0,
+    valor: moeadaParaNumero(transcao["Valor (R$)"]),
     pagamento: transcao["Forma de Pagamento:"],
     novo: Boolean(transcao["Cliente Novo:"]),
   };
