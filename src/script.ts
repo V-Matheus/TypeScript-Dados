@@ -1,4 +1,5 @@
 import Estatisticas from "./Estatisticas.js";
+import { countList } from "./countBy.js";
 import fetchData from "./feachDate.js";
 import normalizarTransacao from "./normalizarTransacao.js";
 
@@ -12,12 +13,22 @@ async function handleData() {
   preecherEstatisticas(transacoes);
 }
 
+function preecherLista(lista: countList, containerId: string): void {
+  const containerElement = document.getElementById(containerId);
+  if(containerElement) {
+    Object.keys(lista).forEach(key => {
+      containerElement.innerHTML += `<p>${key}: ${lista[key]}</p>`
+    })
+  }
+}
+
+
 function preecherEstatisticas(transacoes: Transacao[]): void {
   const data = new Estatisticas(transacoes);
-
-  console.log(data);
   
-
+  preecherLista(data.pagamento, 'pagamento');
+  preecherLista(data.status, 'status');
+  
   const totalElement = document.querySelector<HTMLElement>('#total span');
   if(totalElement) {
     totalElement.innerText = data.total.toLocaleString('pt-BR', {
