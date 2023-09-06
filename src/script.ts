@@ -5,12 +5,24 @@ async function handleData() {
   const data = await fetchData<TransacaoAPI[]>(
     "https://api.origamid.dev/json/transacoes.json?"
   );
-  if(!data) return;
-  const transacoes = data.map(normalizarTransacao)
-  console.log(transacoes);
-  transacoes.forEach(item => {
-    item.data.getHours()
-  })
+  if (!data) return;
+  const transacoes = data.map(normalizarTransacao);
+  preecherTabela(transacoes);
 }
 
+function preecherTabela(transacoes: Transacao[]): void {
+  const tabela = document.querySelector('#transacoes tbody');
+  if(!tabela) return;
+  transacoes.forEach((transacao) => {
+    tabela.innerHTML += `
+      <tr>
+        <td>${transacao.nome}</td>
+        <td>${transacao.email}</td>
+        <td>R$ ${transacao.moeada}</td>
+        <td>${transacao.pagamento}</td>
+        <td>${transacao.status}</td>
+      <tr>
+    `
+  });
+}
 handleData();

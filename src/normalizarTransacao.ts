@@ -16,7 +16,7 @@ declare global {
     Status: TransacaoStatus;
     Email: string;
     ["Valor (R$)"]: string;
-    ["Forma de Pagamento:"]: string;
+    ["Forma de Pagamento:"]: TransacaoPagamento;
     ["Cliente Novo:"]: number;
   }
 
@@ -33,7 +33,7 @@ declare global {
   }
 }
 
-export default function normalizarTransacao(transcao: TransacaoAPI) {
+export default function normalizarTransacao(transcao: TransacaoAPI): Transacao {
   return {
     nome: transcao.Nome,
     id: transcao.ID,

@@ -5,9 +5,22 @@ async function handleData() {
     if (!data)
         return;
     const transacoes = data.map(normalizarTransacao);
-    console.log(transacoes);
-    transacoes.forEach(item => {
-        item.data.getHours();
+    preecherTabela(transacoes);
+}
+function preecherTabela(transacoes) {
+    const tabela = document.querySelector('#transacoes tbody');
+    if (!tabela)
+        return;
+    transacoes.forEach((transacao) => {
+        tabela.innerHTML += `
+      <tr>
+        <td>${transacao.nome}</td>
+        <td>${transacao.email}</td>
+        <td>R$ ${transacao.moeada}</td>
+        <td>${transacao.pagamento}</td>
+        <td>${transacao.status}</td>
+      <tr>
+    `;
     });
 }
 handleData();
