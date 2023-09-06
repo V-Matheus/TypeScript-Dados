@@ -16,7 +16,7 @@ declare global {
     Status: TransacaoStatus;
     Email: string;
     ["Valor (R$)"]: string;
-    ["Forma de Pagamento:"]: TransacaoPagamento;
+    ["Forma de Pagamento"]: TransacaoPagamento;
     ["Cliente Novo:"]: number;
   }
 
@@ -42,7 +42,7 @@ export default function normalizarTransacao(transcao: TransacaoAPI): Transacao {
     email: transcao.Email,
     moeada: transcao["Valor (R$)"],
     valor: moeadaParaNumero(transcao["Valor (R$)"]),
-    pagamento: transcao["Forma de Pagamento:"],
+    pagamento: transcao["Forma de Pagamento"],
     novo: Boolean(transcao["Cliente Novo:"]),
   };
 }

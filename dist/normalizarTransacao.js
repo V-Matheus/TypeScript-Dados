@@ -9,7 +9,7 @@ export default function normalizarTransacao(transcao) {
         email: transcao.Email,
         moeada: transcao["Valor (R$)"],
         valor: moeadaParaNumero(transcao["Valor (R$)"]),
-        pagamento: transcao["Forma de Pagamento:"],
+        pagamento: transcao["Forma de Pagamento"],
         novo: Boolean(transcao["Cliente Novo:"]),
     };
 }
